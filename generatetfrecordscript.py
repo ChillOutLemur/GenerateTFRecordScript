@@ -8,7 +8,7 @@ Original file is located at
 """
 
 # ADAPTED FROM: https://github.com/nicknochnack/GenerateTFRecord/blob/main/generate_tfrecord.py
-# CHANGES AT LINES 92-95
+# CHANGES AT LINES 101-104
 # EXPLANATION FOR THESE CHANGES AT THE END
 
 """ Sample TensorFlow XML-to-TFRecord converter
@@ -98,10 +98,10 @@ def xml_to_csv(path):
                      int(root.find('size')[0].text),
                      int(root.find('size')[1].text),
                      member[0].text,
-                     int(member[4][0].text), #Changed 4 to 5
-                     int(member[4][1].text), #Changed 4 to 5
-                     int(member[4][2].text), #Changed 4 to 5
-                     int(member[4][3].text) #Changed 4 to 5
+                     int(member[5][0].text), #Changed 4 to 5
+                     int(member[5][1].text), #Changed 4 to 5
+                     int(member[5][2].text), #Changed 4 to 5
+                     int(member[5][3].text) #Changed 4 to 5
                      )
             xml_list.append(value)
     column_name = ['filename', 'width', 'height',
@@ -209,5 +209,6 @@ if __name__ == '__main__':
 </annotation>
 """
 
-# I want to access xmin, ymin, xmax and ymax, which is stored in the bounding-box
-# the bounding-box is at the fifth index and not at the fourth, hence the change from 4 to 5
+# I want to access xmin, ymin, xmax and ymax, which are stored in the bounding-box
+# the bounding-box, 'bndbox', is at the fifth index of the fourth tag of the .xml file, 'object', and not at the fourth index, 'difficult'
+# hence the change from 4 to 5
